@@ -6,7 +6,7 @@ use GuzzleHttp\Client as HttpClient;
 
 class FetchHelper
 {
-    protected function get($url, $headers = [])
+    public function get($url, $headers = [])
     {
         $client = new HttpClient();
         $request = $client->get($url, $headers);
