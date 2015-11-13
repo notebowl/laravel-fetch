@@ -9,9 +9,8 @@ class FetchHelper
     public function get($url, $headers = [])
     {
         $client = new HttpClient();
-        $request = $client->get($url, $headers);
 
-        return $request->send();
+        return $client->get($url, $headers);
     }
 
     public function __call($method, $parameters)
