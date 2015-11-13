@@ -1,5 +1,5 @@
 {
-    "name": "notebowl/fetch",
+    "name": "notebowl/laravel-fetch",
     "description": "Extends functionality for the default url facade through a new fetch facade",
     "keywords": ["laravel", "notebowl", "url"],
     "license": "MIT",
