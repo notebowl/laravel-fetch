@@ -7,11 +7,11 @@ use GuzzleHttp\Subscriber\Retry\RetrySubscriber as Retry;
 
 class FetchHelper
 {
-    public function getRetry($url, $headers = [], $tries = 3, $status = null, $delay = null)
+    public function getRetry($url, $headers = [], $tries = 3, $status = null, $delay = null, $customChain = null)
     {
         $status = $status ?: [500, 503];
         $retry = new Retry([
-            'filter' => Retry::createChainFilter([
+            'filter' => Retry::createChainFilter($customChain ?: [
                 Retry::createIdempotentFilter(),
                 Retry::createCurlFilter(),
                 Retry::createStatusFilter($status),
