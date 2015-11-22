@@ -3,6 +3,7 @@
 namespace NB\Utilities\Fetch;
 
 use GuzzleHttp\Client as HttpClient;
+use GuzzleHttp\Event\AbstractTransferEvent;
 use GuzzleHttp\Subscriber\Retry\RetrySubscriber as Retry;
 
 class FetchHelper
@@ -17,7 +18,9 @@ class FetchHelper
                 Retry::createStatusFilter($status),
             ]),
             'max' => $tries,
-            'delay' => function ($retries) use ($delay) {
+            'delay' => function ($retries, AbstractTransferEvent $e) use ($delay) {
+                info('Delaying...');
+
                 return $delay ?: (int) pow(2, $retries - 1);
             },
         ]);
