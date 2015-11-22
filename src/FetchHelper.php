@@ -7,7 +7,7 @@ use GuzzleHttp\Subscriber\Retry\RetrySubscriber as Retry;
 
 class FetchHelper
 {
-    public function getRetry($url, $headers = [], $tries = 3, $status = null, $delay = null, $customChain = null)
+    public function getRetry(String $url, array $headers = [], $tries = 3, array $status = null, $delay = null, array $customChain = null)
     {
         $status = $status ?: [500, 503];
         $retry = new Retry([
@@ -28,21 +28,21 @@ class FetchHelper
         return $client->get($url, $headers);
     }
 
-    public function getResponseHeader($url, $header, $headers = [])
+    public function getResponseHeader(String $url, String $header, array $headers = [])
     {
         $response = $this->get($url, $headers);
 
         return $response->getHeader($header);
     }
 
-    public function getBody($url, $headers = [])
+    public function getBody(String $url, array $headers = [])
     {
         $response = $this->get($url, $headers);
 
         return $response->getBody();
     }
 
-    public function get($url, $headers = [])
+    public function get(String $url, array $headers = [])
     {
         $client = new HttpClient();
 
