@@ -19,12 +19,12 @@ class FetchHelper
     {
         $client = new HttpClient();
 
-        return $client->get($url, $headers);
+        return $client->get($url, ['headers' => $headers]);
     }
 
     public function getResponseHeader($url, $header, array $headers = [])
     {
-        $response = $this->get($url, $headers);
+        $response = $this->get($url, ['headers' => $headers]);
 
         return $response->getHeader($header);
     }
@@ -56,7 +56,7 @@ class FetchHelper
         $client = new HttpClient();
         $client->getEmitter()->attach($retry);
 
-        return $client->get($url, $headers);
+        return $client->get($url, ['headers' => $headers]);
     }
 
     public function __call($method, $parameters)
